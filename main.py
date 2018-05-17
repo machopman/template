@@ -1,0 +1,177 @@
+from flask import Flask, request, abort,jsonify
+from linebot import (LineBotApi, WebhookHandler)
+from linebot.exceptions import (InvalidSignatureError)
+from linebot.models import (MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, CarouselTemplate,
+                            CarouselColumn, PostbackTemplateAction, MessageTemplateAction, URITemplateAction,
+                            ButtonsTemplate, ImageCarouselTemplate, ImageCarouselColumn, ConfirmTemplate)
+from  flask.ext.pymongo import  PyMongo
+
+from searchpic import searchpic
+
+app = Flask(__name__)
+app.config['MONGO_DBNAME']='moviebot'
+app.config['MONGO_URI']='mongodb://pretty:shop1234@ds139942.mlab.com:39942/moviebot'
+
+mongo =PyMongo(app)
+
+line_bot_api = LineBotApi('iYDoDLW1k4yIYJvMnHVi18Vhl0NXPh5ec6a4FLdlR/en3nqmGCWsF/QeYKX8MPj2DYUFbjsEos/+HGUA7LgF4OimIUh1WD9j/phhG/vqX9zZD92iiw/t+kpE1AadWCIdwkzMuxEvAbCM84LtdTkQSgdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('935cecc6bf121cf08c1cea288956462b')
+
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+@app.route("/webhook", methods=['POST'])
+def webhook():
+    # get X-Line-Signature header value
+    signature = request.headers['X-Line-Signature']
+    # get request body as text
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
+    # handle webhook body
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        abort(400)
+
+    return 'OK'
+
+
+
+
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+        if event.message.text == 'แนะนำหนังหน่อย':
+            message = TemplateSendMessage(
+                alt_text='Carousel template',
+                template=CarouselTemplate(
+                    columns=[
+                        CarouselColumn(
+                            thumbnail_image_url=searchpic(),
+                            title='this is menu1',
+                            text='description1',
+                            actions=[
+                                PostbackTemplateAction(
+                                    label='postback1',
+                                    text='postback text1',
+                                    data='action=buy&itemid=1'
+                                ),
+                                MessageTemplateAction(
+                                    label='message1',
+                                    text='message text1'
+                                ),
+                                URITemplateAction(
+                                    label='uri1',
+                                    uri='http://mandm.plearnjai.com/'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=searchpic(),
+                            title='this is menu2',
+                            text='description2',
+                            actions=[
+                                PostbackTemplateAction(
+                                    label='postback2',
+                                    text='postback text2',
+                                    data='action=buy&itemid=2'
+                                ),
+                                MessageTemplateAction(
+                                    label='message2',
+                                    text='message text2'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri='http://mandm.plearnjai.com/'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, message)
+            return 0
+
+
+        elif event.message.text == "ปุ่ม":
+            buttons_template = TemplateSendMessage(
+                alt_text='Buttons Template',
+                template=ButtonsTemplate(
+                    title='這是ButtonsTemplate',
+                    text='ButtonsTemplate可以傳送text,uri',
+                    thumbnail_image_url='顯示在開頭的大圖片網址',
+                    actions=[
+                        MessageTemplateAction(
+                            label='ButtonsTemplate',
+                            text='ButtonsTemplate'
+                        ),
+                        URITemplateAction(
+                            label='VIDEO1',
+                            uri='影片網址'
+                        ),
+                        PostbackTemplateAction(
+                            label='postback',
+                            text='postback text',
+                            data='postback1'
+                        )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, buttons_template)
+            return 0
+
+        elif  event.message.text == "1":
+             print("Image Carousel")
+             Image_Carousel = TemplateSendMessage(
+                alt_text='目錄 template',
+                template=ImageCarouselTemplate(
+                    columns=[
+                        ImageCarouselColumn(
+                            image_url='圖片網址',
+                            action=PostbackTemplateAction(
+                                label='postback1',
+                                text='postback text1',
+                                data='action=buy&itemid=1'
+                            )
+                        ),
+                        ImageCarouselColumn(
+                            image_url='圖片網址',
+                            action=PostbackTemplateAction(
+                                label='postback2',
+                                text='postback text2',
+                                data='action=buy&itemid=2'
+                            )
+                        )
+                    ]
+                )
+             )
+             line_bot_api.reply_message(event.reply_token, Image_Carousel)
+             return 0
+        elif event.message.text == "2":
+            confirm_template_message = TemplateSendMessage(
+                alt_text='Confirm template',
+                template=ConfirmTemplate(
+                    text='Are you sure?',
+                    actions=[
+                        PostbackTemplateAction(
+                            label='postback',
+                            text='postback text',
+                            data='action=buy&itemid=1'
+                        ),
+                        MessageTemplateAction(
+                            label='message',
+                            text='message text'
+                        )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, confirm_template_message)
+            return 0
+
+
+
+
+if __name__ == '__main__':
+    app.run()
