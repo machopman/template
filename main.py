@@ -87,87 +87,71 @@ def handle_message(event):
                                     uri='http://mandm.plearnjai.com/'
                                 )
                             ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=searchpic(),
+                            title='this is menu2',
+                            text='description2',
+                            actions=[
+                                PostbackTemplateAction(
+                                    label='postback2',
+                                    text='postback text2',
+                                    data='action=buy&itemid=2'
+                                ),
+                                MessageTemplateAction(
+                                    label='message2',
+                                    text='message text2'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri='http://mandm.plearnjai.com/'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=searchpic(),
+                            title='this is menu2',
+                            text='description2',
+                            actions=[
+                                PostbackTemplateAction(
+                                    label='postback2',
+                                    text='postback text2',
+                                    data='action=buy&itemid=2'
+                                ),
+                                MessageTemplateAction(
+                                    label='message2',
+                                    text='message text2'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri='http://mandm.plearnjai.com/'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url=searchpic(),
+                            title='this is menu2',
+                            text='description2',
+                            actions=[
+                                PostbackTemplateAction(
+                                    label='postback2',
+                                    text='postback text2',
+                                    data='action=buy&itemid=2'
+                                ),
+                                MessageTemplateAction(
+                                    label='message2',
+                                    text='message text2'
+                                ),
+                                URITemplateAction(
+                                    label='uri2',
+                                    uri='http://mandm.plearnjai.com/'
+                                )
+                            ]
                         )
                     ]
                 )
             )
             line_bot_api.reply_message(event.reply_token, message)
-            return 0
-
-
-        elif event.message.text == "ปุ่ม":
-            buttons_template = TemplateSendMessage(
-                alt_text='Buttons Template',
-                template=ButtonsTemplate(
-                    title='這是ButtonsTemplate',
-                    text='ButtonsTemplate可以傳送text,uri',
-                    thumbnail_image_url=searchpic(),
-                    actions=[
-                        MessageTemplateAction(
-                            label='ButtonsTemplate',
-                            text='ButtonsTemplate'
-                        ),
-                        URITemplateAction(
-                            label='VIDEO1',
-                            uri='影片網址'
-                        ),
-                        PostbackTemplateAction(
-                            label='postback',
-                            text='postback text',
-                            data='postback1'
-                        )
-                    ]
-                )
-            )
-            line_bot_api.reply_message(event.reply_token, buttons_template)
-            return 0
-
-        elif  event.message.text == "1":
-             print("Image Carousel")
-             Image_Carousel = TemplateSendMessage(
-                alt_text='目錄 template',
-                template=ImageCarouselTemplate(
-                    columns=[
-                        ImageCarouselColumn(
-                            image_url=searchpic(),
-                            action=PostbackTemplateAction(
-                                label='postback1',
-                                text='postback text1',
-                                data='action=buy&itemid=1'
-                            )
-                        ),
-                        ImageCarouselColumn(
-                            image_url=searchpic(),
-                            action=PostbackTemplateAction(
-                                label='postback2',
-                                text='postback text2',
-                                data='action=buy&itemid=2'
-                            )
-                        )
-                    ]
-                )
-             )
-             line_bot_api.reply_message(event.reply_token, Image_Carousel)
-             return 0
-        elif event.message.text == "2":
-            confirm_template_message = TemplateSendMessage(
-                alt_text='Confirm template',
-                template=ConfirmTemplate(
-                    text='Are you sure?',
-                    actions=[
-                        PostbackTemplateAction(
-                            label='postback',
-                            text='postback text',
-                            data='action=buy&itemid=1'
-                        ),
-                        MessageTemplateAction(
-                            label='message',
-                            text='message text'
-                        )
-                    ]
-                )
-            )
-            line_bot_api.reply_message(event.reply_token, confirm_template_message)
             return 0
 
 
