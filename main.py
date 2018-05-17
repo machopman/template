@@ -101,7 +101,7 @@ def handle_message(event):
                 template=ButtonsTemplate(
                     title='這是ButtonsTemplate',
                     text='ButtonsTemplate可以傳送text,uri',
-                    thumbnail_image_url='顯示在開頭的大圖片網址',
+                    thumbnail_image_url=searchpic(),
                     actions=[
                         MessageTemplateAction(
                             label='ButtonsTemplate',
@@ -129,7 +129,7 @@ def handle_message(event):
                 template=ImageCarouselTemplate(
                     columns=[
                         ImageCarouselColumn(
-                            image_url='圖片網址',
+                            image_url=searchpic(),
                             action=PostbackTemplateAction(
                                 label='postback1',
                                 text='postback text1',
@@ -137,7 +137,7 @@ def handle_message(event):
                             )
                         ),
                         ImageCarouselColumn(
-                            image_url='圖片網址',
+                            image_url=searchpic(),
                             action=PostbackTemplateAction(
                                 label='postback2',
                                 text='postback text2',
