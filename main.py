@@ -199,24 +199,15 @@ def handle_message(event):
                 template=ConfirmTemplate(
                     text='Are you sure?',
                     actions=[
-
-                        MessageTemplateAction(
-                            label='message',
-                            text='message text1'
-                        ),
-
-                        MessageTemplateAction(
-                            label='message',
-                            text='message text2'
+                        PostbackTemplateAction(
+                            label='postback',
+                            text='postback text',
+                            data='action=buy&itemid=1'
                         ),
                         MessageTemplateAction(
                             label='message',
-                            text='message text3'
-                        ),
-                        MessageTemplateAction(
-                            label='message',
-                            text='message text4'
-                        ),
+                            text='message text'
+                        )
                     ]
                 )
              )
@@ -229,32 +220,32 @@ def handle_message(event):
                     title='Menu',
                     text='Please select',
                     actions=[
-
-                        MessageTemplateAction(
-                            label='message',
-                            text='message text1'
+                        PostbackTemplateAction(
+                            label='postback',
+                            text='postback text',
+                            data='action=buy&itemid=1'
                         ),
                         MessageTemplateAction(
                             label='message',
-                            text='message text2'
+                            text='message text'
+                        ),
+                        URITemplateAction(
+                            label='uri',
+                            uri='http://mandm.plearnjai.com/'
+                        ),
+                        PostbackTemplateAction(
+                            label='postback',
+                            text='postback text',
+                            data='action=buy&itemid=1'
                         ),
                         MessageTemplateAction(
                             label='message',
-                            text='message text3'
+                            text='message text'
                         ),
-                        MessageTemplateAction(
-                            label='message',
-                            text='message text4'
-                        ),
-                        MessageTemplateAction(
-                            label='message',
-                            text='message text5'
-                        ),
-                        MessageTemplateAction(
-                            label='message',
-                            text='message text6'
-                        ),
-
+                        URITemplateAction(
+                            label='uri',
+                            uri='http://mandm.plearnjai.com/'
+                        )
                     ]
                 )
             )
