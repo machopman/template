@@ -94,10 +94,6 @@ def handle_message(event):
                                 MessageTemplateAction(
                                     label='message1',
                                     text='message text1'
-                                ),
-                                MessageTemplateAction(
-                                    label='message1',
-                                    text='message text1'
                                 )
 
                             ]
@@ -113,10 +109,6 @@ def handle_message(event):
                                 MessageTemplateAction(
                                     label='message2',
                                     text='message text2'
-                                ),
-                                MessageTemplateAction(
-                                    label='message1',
-                                    text='message text1'
                                 ),
                                 MessageTemplateAction(
                                     label='message1',
