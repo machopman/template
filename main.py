@@ -63,6 +63,14 @@ def handle_message(event):
                             label='message',
                             text='message text'
                         ),
+                        MessageTemplateAction(
+                            label='message',
+                            text='message text'
+                        ),
+                        MessageTemplateAction(
+                            label='message',
+                            text='message text'
+                        )
 
 
                     ]
