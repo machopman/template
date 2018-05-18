@@ -232,20 +232,8 @@ def handle_message(event):
                         URITemplateAction(
                             label='uri',
                             uri='http://mandm.plearnjai.com/'
-                        ),
-                        PostbackTemplateAction(
-                            label='postback',
-                            text='postback text',
-                            data='action=buy&itemid=1'
-                        ),
-                        MessageTemplateAction(
-                            label='message',
-                            text='message text'
-                        ),
-                        URITemplateAction(
-                            label='uri',
-                            uri='http://mandm.plearnjai.com/'
                         )
+
                     ]
                 )
             )
