@@ -43,196 +43,27 @@ def webhook():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+
         if event.message.text == '1':
-            message = TemplateSendMessage(
-                alt_text='Carousel template',
-                template=CarouselTemplate(
-                    columns=[
-                        CarouselColumn(
-                            thumbnail_image_url=searchpic(),
-                            title='this is menu1',
-                            text='description1',
-                            actions=[
-                                PostbackTemplateAction(
-                                    label='postback1',
-                                    text='postback text1',
-                                    data='action=buy&itemid=1'
-                                ),
-                                MessageTemplateAction(
-                                    label='message1',
-                                    text='message text1'
-                                ),
-                                URITemplateAction(
-                                    label='uri1',
-                                    uri='http://mandm.plearnjai.com/'
-                                )
-                            ]
-                        ),
-                        CarouselColumn(
-                            thumbnail_image_url=searchpic(),
-                            title='this is menu2',
-                            text='description2',
-                            actions=[
-                                PostbackTemplateAction(
-                                    label='postback2',
-                                    text='postback text2',
-                                    data='action=buy&itemid=2'
-                                ),
-                                MessageTemplateAction(
-                                    label='message2',
-                                    text='message text2'
-                                ),
-                                URITemplateAction(
-                                    label='uri2',
-                                    uri='http://mandm.plearnjai.com/'
-                                )
-                            ]
-                        ),
-                        CarouselColumn(
-                            thumbnail_image_url=searchpic(),
-                            title='this is menu2',
-                            text='description2',
-                            actions=[
-                                PostbackTemplateAction(
-                                    label='postback2',
-                                    text='postback text2',
-                                    data='action=buy&itemid=2'
-                                ),
-                                MessageTemplateAction(
-                                    label='message2',
-                                    text='message text2'
-                                ),
-                                URITemplateAction(
-                                    label='uri2',
-                                    uri='http://mandm.plearnjai.com/'
-                                )
-                            ]
-                        ),
-                        CarouselColumn(
-                            thumbnail_image_url=searchpic(),
-                            title='this is menu2',
-                            text='description2',
-                            actions=[
-                                PostbackTemplateAction(
-                                    label='postback2',
-                                    text='postback text2',
-                                    data='action=buy&itemid=2'
-                                ),
-                                MessageTemplateAction(
-                                    label='message2',
-                                    text='message text2'
-                                ),
-                                URITemplateAction(
-                                    label='uri2',
-                                    uri='http://mandm.plearnjai.com/'
-                                )
-                            ]
-                        ),
-                        CarouselColumn(
-                            thumbnail_image_url=searchpic(),
-                            title='this is menu2',
-                            text='description2',
-                            actions=[
-                                PostbackTemplateAction(
-                                    label='postback2',
-                                    text='postback text2',
-                                    data='action=buy&itemid=2'
-                                ),
-                                MessageTemplateAction(
-                                    label='message2',
-                                    text='message text2'
-                                ),
-                                URITemplateAction(
-                                    label='uri2',
-                                    uri='http://mandm.plearnjai.com/'
-                                )
-                            ]
-                        ),
-                        CarouselColumn(
-                            thumbnail_image_url=searchpic(),
-                            title='this is menu2',
-                            text='description2',
-                            actions=[
-                                PostbackTemplateAction(
-                                    label='postback2',
-                                    text='postback text2',
-                                    data='action=buy&itemid=2'
-                                ),
-                                MessageTemplateAction(
-                                    label='message2',
-                                    text='message text2'
-                                ),
-                                URITemplateAction(
-                                    label='uri2',
-                                    uri='http://mandm.plearnjai.com/'
-                                )
-                            ]
-                        ),
-                        CarouselColumn(
-                            thumbnail_image_url=searchpic(),
-                            title='this is menu2',
-                            text='description2',
-                            actions=[
-                                PostbackTemplateAction(
-                                    label='postback2',
-                                    text='postback text2',
-                                    data='action=buy&itemid=2'
-                                ),
-                                MessageTemplateAction(
-                                    label='message2',
-                                    text='message text2'
-                                ),
-                                URITemplateAction(
-                                    label='uri2',
-                                    uri='http://mandm.plearnjai.com/'
-                                )
-                            ]
-                        )
-                    ]
-                )
-            )
-            line_bot_api.reply_message(event.reply_token, message)
-            return 0
-        elif event.message.text == '2':
-             message = TemplateSendMessage(
-                alt_text='Confirm template',
-                template=ConfirmTemplate(
-                    text='Are you sure?',
-                    actions=[
-                        PostbackTemplateAction(
-                            label='postback',
-                            text='postback text',
-                            data='action=buy&itemid=1'
-                        ),
-                        MessageTemplateAction(
-                            label='message',
-                            text='message text'
-                        )
-                    ]
-                )
-             )
-             line_bot_api.reply_message(event.reply_token, message)
-        elif event.message.text == '3':
             message = TemplateSendMessage(
                 alt_text='Buttons template',
                 template=ButtonsTemplate(
-                    thumbnail_image_url=searchpic(),
                     title='Menu',
                     text='Please select',
                     actions=[
-                        PostbackTemplateAction(
-                            label='postback',
-                            text='postback text',
-                            data='action=buy&itemid=1'
+                        MessageTemplateAction(
+                            label='message',
+                            text='message text'
                         ),
                         MessageTemplateAction(
                             label='message',
                             text='message text'
                         ),
-                        URITemplateAction(
-                            label='uri',
-                            uri='http://mandm.plearnjai.com/'
-                        )
+                        MessageTemplateAction(
+                            label='message',
+                            text='message text'
+                        ),
+
 
                     ]
                 )
